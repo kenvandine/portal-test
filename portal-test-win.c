@@ -142,7 +142,7 @@ portal_test_win_init (PortalTestWin *win)
   gtk_widget_init_template (GTK_WIDGET (win));
 
   path = g_build_filename (g_get_user_runtime_dir (), "flatpak-info", NULL);
-  if (g_file_test (path, G_FILE_TEST_EXISTS))
+  if (g_file_test (path, G_FILE_TEST_EXISTS) || g_getenv ("SNAP"))
     status = "confined";
   else
     status = "unconfined";
@@ -199,8 +199,14 @@ open_local (GtkWidget *button, PortalTestWin *win)
 {
   g_autoptr(GFile) file = NULL;
   g_autofree char *uri = NULL;
+  g_autofree char *path = NULL;
 
-  file = g_file_new_for_path (PKGDATADIR "/test.txt");
+  path = g_build_filename (g_getenv ("SNAP"), PKGDATADIR, "/test.txt", NULL);
+  if (g_getenv ("SNAP") || (g_file_test (path, G_FILE_TEST_EXISTS)))
+    file = g_file_new_for_path (path);
+  else
+    file = g_file_new_for_path (PKGDATADIR "/test.txt");
+
   uri = g_file_get_uri (file);
 
   g_message ("Opening '%s'", uri);

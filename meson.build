@@ -54,3 +54,4 @@ executable('portal-test',
 
 install_data('org.gnome.PortalTest.desktop', install_dir: 'share/applications')
 install_data('org.gnome.PortalTest.service', install_dir: 'share/dbus-1/services')
+install_data('test.txt', install_dir: 'share/portal-test')
