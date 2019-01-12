@@ -1114,8 +1114,16 @@ get_text (void)
 {
   char *text;
   g_autoptr(GError) error = NULL;
+  g_autoptr(GFile) file = NULL;
+  g_autofree char *path = NULL;
 
-  if (!g_file_get_contents ("portal-test-win.c", &text, NULL, &error))
+  path = g_build_filename (g_getenv ("SNAP"), PKGDATADIR, "/portal-test-win.c", NULL);
+  if (g_getenv ("SNAP") || (g_file_test (path, G_FILE_TEST_EXISTS)))
+    file = g_file_new_for_path (path);
+  else
+    file = g_file_new_for_path (PKGDATADIR "/portal-test-win.c");
+
+  if (!g_file_get_contents (g_file_get_path (file), &text, NULL, &error))
     {
       g_warning ("Failed to load print text: %s", error->message);
       text = g_strdup (error->message);
