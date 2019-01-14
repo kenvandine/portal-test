@@ -273,7 +273,7 @@
 
         <child>
           <object class="GtkLabel">
-            <property name="visible">1</property>
+            <property name="visible">0</property>
             <property name="halign">end</property>
             <property name="label">Screencast</property>
           </object>
@@ -284,7 +284,7 @@
         </child>
         <child>
           <object class="GtkToggleButton" id="screencast_toggle">
-            <property name="visible">1</property>
+            <property name="visible">0</property>
             <property name="label">Screencast</property>
             <signal name="toggled" handler="screencast_toggled"/>
           </object>
@@ -295,7 +295,7 @@
         </child>
         <child>
           <object class="GtkLabel" id="screencast_label">
-            <property name="visible">1</property>
+            <property name="visible">0</property>
             <property name="halign">end</property>
           </object>
           <packing>
