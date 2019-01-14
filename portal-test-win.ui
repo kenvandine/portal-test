@@ -432,7 +432,7 @@
 
         <child>
           <object class="GtkLabel">
-            <property name="visible">1</property>
+            <property name="visible">0</property>
             <property name="halign">end</property>
             <property name="label">Inhibit</property>
           </object>
@@ -443,7 +443,7 @@
         </child>
         <child>
           <object class="GtkBox">
-            <property name="visible">1</property>
+            <property name="visible">0</property>
             <child>
               <object class="GtkCheckButton" id="inhibit_idle">
                 <property name="visible">1</property>
